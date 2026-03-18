@@ -924,6 +924,14 @@ a, button { cursor: none; }
   text-align: center; display: none;
 }
 .form-success.show { display: block; animation: fadeInUp 0.4s ease; }
+.form-error {
+  margin-top: 16px; padding: 14px; border-radius: 12px;
+  background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25);
+  color: #f87171; font-size: 0.9rem; font-weight: 500;
+  text-align: center; display: none;
+}
+.form-error a { color: #f87171; text-decoration: underline; }
+.form-error.show { display: block; animation: fadeInUp 0.4s ease; }
 @keyframes fadeInUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
 /* ═══════════════════════════════════════════

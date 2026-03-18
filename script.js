@@ -233,23 +233,52 @@ sections.forEach(s => sectionObserver.observe(s));
 const form        = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
 
-form.addEventListener('submit', e => {
+// Keep _replyto in sync with email field so replies go to the sender
+const emailInput = document.getElementById('email');
+const replytoInput = document.getElementById('replyto');
+if (emailInput && replytoInput) {
+  emailInput.addEventListener('input', () => { replytoInput.value = emailInput.value; });
+}
+
+form.addEventListener('submit', async e => {
   e.preventDefault();
-  const btn  = form.querySelector('.btn-primary');
-  const text = btn.querySelector('.btn-text');
+  const btn      = form.querySelector('.btn-primary');
+  const text     = btn.querySelector('.btn-text');
+  const errorEl  = document.getElementById('formError');
+
   text.textContent = 'Sending…';
   btn.disabled = true;
   btn.style.opacity = '0.7';
+  formSuccess.classList.remove('show');
+  errorEl.classList.remove('show');
 
-  // Simulate send (replace with real API call)
-  setTimeout(() => {
-    formSuccess.classList.add('show');
-    form.reset();
+  try {
+    const data = new FormData(form);
+    const res  = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      formSuccess.classList.add('show');
+      form.reset();
+      setTimeout(() => formSuccess.classList.remove('show'), 6000);
+    } else {
+      const json = await res.json().catch(() => ({}));
+      if (json.errors) {
+        errorEl.classList.add('show');
+      } else {
+        errorEl.classList.add('show');
+      }
+    }
+  } catch {
+    errorEl.classList.add('show');
+  } finally {
     text.textContent = 'Send Message';
     btn.disabled = false;
     btn.style.opacity = '';
-    setTimeout(() => formSuccess.classList.remove('show'), 5000);
-  }, 1400);
+  }
 });
 
 
