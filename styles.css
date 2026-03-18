@@ -729,27 +729,9 @@ a, button { cursor: none; }
 .projects-cta p  { color: var(--text2); font-size: 1.1rem; max-width: 600px; line-height: 1.8; }
 .projects-cta .btn-primary { margin-top: 12px; }
 
-/* Legacy hidden */
+/* Legacy truly-dead classes only */
 .project-card, .project-body, .project-meta, .project-tag,
-.project-links-small, .project-stack, .projects-footer,
-.showcase-grid, .showcase-content, .showcase-title, .showcase-desc,
-.showcase-stack, .showcase-link, .showcase-image, .showcase-overlay,
-.showcase-icon, .showcase-badge, .showcase-image.mockup-image { display: none !important; }
-
-/* Keep new pz-* and site-mockup classes visible */
-.pz-grid, .pz-content, .pz-visual, .pz-number, .pz-title, .pz-desc,
-.pz-stack, .pz-link, .pz-img-wrap, .pz-float-badge, .pz-glow,
-.pz-mockup-wrap, .site-mockup, .site-mockup-bar, .site-mockup-dots,
-.site-mockup-url, .site-mockup-body { display: revert !important; }
-
-.pz-grid        { display: grid !important; }
-.pz-content     { display: flex !important; }
-.pz-visual      { display: block !important; }
-.pz-img-wrap    { display: block !important; }
-.pz-mockup-wrap { display: block !important; }
-.site-mockup    { display: block !important; }
-.site-mockup-bar{ display: flex !important; }
-.site-mockup-body { display: flex !important; }
+.project-links-small, .project-stack, .projects-footer { display: none !important; }
 
 
 
